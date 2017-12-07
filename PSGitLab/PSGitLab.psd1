@@ -89,6 +89,8 @@ FunctionsToExport = @(
     'Remove-GitLabProjectWebhook',
     'Set-GitLabProject',
     'Remove-GitLabProject',
+    'Set-GitLabProtectedBranch',
+    'Remove-GitLabProtectedBranch',
     'Save-GitLabAPIConfiguration',
     'Test-GitLabAPI',
     'Search-GitLabUser',
