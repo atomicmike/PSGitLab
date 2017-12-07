@@ -26,7 +26,7 @@ Function New-GitLabProject {
 
     try {
         if ($PSBoundParameters.ContainsKey('Namespace')) {
-            $nSpace = Get-GitLabNamespace | Where-Object {$_.path -eq "$Namespace"}
+            $nSpace = Get-GitLabNamespace | Where-Object {$_.full_path -eq "$Namespace"}
             if ($nSpace.id.Count -eq 1) {
                 $Body.Add('namespace_id', $nSpace.id)
                 $PSBoundParameters.Remove('Namespace') | Out-Null

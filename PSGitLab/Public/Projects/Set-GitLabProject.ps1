@@ -29,6 +29,7 @@ Function Set-GitLabProject
         [Alias('visibility_level')]
         [ValidateSet("Public", "Internal", "Private")]
         $VisabilityLevel = $null,
+        [String]$DefaultBranch,
 
         [switch]$Passthru
 
@@ -49,6 +50,7 @@ PROCESS {
         if ($Path -ne $null) { $Body.Add('path',$Path) }
         if ($Description -ne $null) { $Body.Add('description',$Description) }
         if ($VisabilityLevel -ne $null ) { $Body.Add('visibility_level', (GetVisibilityLevel $VisabilityLevel) )}
+        if ($DefaultBranch -ne $null ) { $Body.Add('default_branch', $DefaultBranch )}
 
         Write-Verbose ( $PSBoundParameters | ConvertTo-Json )
 
@@ -61,7 +63,7 @@ PROCESS {
             ContentType = 'application/x-www-form-urlencoded'
         }
 
-        $Results = QueryGitLabAPI -Request $Request -ObjectType 'GitLab.User'
+        $Results = QueryGitLabAPI -Request $Request -ObjectType 'GitLab.Project'
 
         if ( $Passthru.isPresent ) {
             $Results
